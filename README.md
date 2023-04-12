@@ -1,6 +1,6 @@
 # Deforestation_Visualization
 
-This project analyses deforestation and forest area changes over time for each country, with a focus on Brazil. The project includes five datasets, covering forest conversion, forest area, causes of deforestation in Brazil, soybean use, and vegetable oil production. The project uses line time-series plots, stacked bar charts, bubble plots, and heatmaps for visualization. The full project can be found [here](/Deforestation_Visualization/blob/main/DSA2101-Group-Project.md#dsa2101-group-project-deforestation).
+This project analyses deforestation and forest area changes over time for each country, with a focus on Brazil. The project includes five datasets, covering forest conversion, forest area, causes of deforestation in Brazil, soybean use, and vegetable oil production. The project uses line time-series plots, stacked bar charts, bubble plots, and heatmaps for visualization. The full project can be found [here](https://github.com/shecheeyee/Deforestation_Visualization/blob/main/DSA2101-Group-Project.md#dsa2101-group-project-deforestation).
 
 ## Issues identified
 The first issue identified is the lack of representation in the causes of deforestation, which are exclusively reflected for Brazil. 
