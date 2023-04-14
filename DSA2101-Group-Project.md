@@ -1,7 +1,7 @@
 DSA2101 Group Project: Deforestation
 ================
 Ethan Cheung, Wilfred Woo, She Chee Yee, Hoo Fang Yu, Merson Cheong
-2023-04-12
+2023-04-14
 
 # Introduction
 
@@ -60,7 +60,7 @@ soybean_use = tuesdata$soybean_use
 vegetable_oil = tuesdata$vegetable_oil
 ```
 
-# Descriptive statistics
+# *Descriptive statistics*
 
 On inspection of the dataset prior to further analysis, we noted two
 main observations with regards to the structure of the dataset:
@@ -68,7 +68,7 @@ main observations with regards to the structure of the dataset:
 Problem 1: Lack of representation With causes of deforestation being
 exclusively reflected for Brazil, analysis for the causes of
 deforestation is an issue. As such, to avoid this issue, the use of
-inner_join() function to form a combined variable was done to analyse
+`inner_join()` function to form a combined variable was done to analyse
 the causes of deforestation specifically from Brazil to investigate the
 impact of changes of the Brazilian Deforestation Rate on the Global
 Forest Area.
@@ -214,22 +214,51 @@ does appear that changes in the Brazilian Deforestation Rate could have
 a significant impact on the Global Forest Area and even complement the
 reforestation efforts by other countries.
 
-# Question 2: Which are the top produced oils and where are they made?
+# Question 2: Are there any patterns regarding the trend of oil production from 1960?
 
 ## Introduction
 
-Introduction to the question and which parts of the data set are used to
-answer the question. Discuss why you are interested in this question. (1
-para)
+Here, we dive deeper in the trend of oil production across the years.
+From within, we see if there are any patterns and what could be some
+possible reaons for this.
+
+For plot 2.1, we first had to clean the datasets by replacing all NAs
+with 0, to represent no production with an actual value. For the left
+plot which is focusing on vegetable oil, in order to visualize the
+market share of each oil, we created a share column to represent the
+market share of each oil in %. The graph is then plotted out using a
+bubble plot, with the size showing the production in tonnes, y-axis
+showing the market share of each oil (%) and x-axis being the year.
+
+For the right plot which focuses on soybean usage, we simply added up
+the columns contributing to non-edible and edible purpose respectively,
+and plotted it out using `geom_area` to show the growth of edible and
+non_edible usage, as well as to provide a visual comparison of the
+growth rate between the 2 usages.
 
 For plot 2.2, we first isolate the top four produced oils (determined
 from plot 2.1) from vegetable_oils, and spread each of these out as
-columns. We plot each oil separately, rather than using facet_wrap(), to
-be able to represent each oil with a different colour to reduce
+columns. We plot each oil separately, rather than using `facet_wrap()`,
+to be able to represent each oil with a different colour to reduce
 confusion. We also merge the dataset with “world” map data from ggplot2
 to be able to represent production as gradients on a map.
 
 ## Methodology
+
+In plot 2.1, we used a combination of a bubble and scatter plot. The
+size of the bubble shows the production of oil in raw numbers while the
+scatter points show the share of the oil as a percentage of the world’s
+total production of oil during a specific year. To keep things simple,
+we leveraged `gghighlight` to place emphasis on the top four oils in
+terms of global oil share. From this, we can easily see the general
+increase in oil production across all oils through the increasing bubble
+size as well as simultaneously keep track of the world’s leading share
+of oil. On the right, we take a deeper dive into the usage of Soybean
+oil. Using a fill plot, we aim to showcase the increasing disparity of
+share of soybean oil being allocated for edible and nonedible sources
+while still providing information with regards to the amount being
+produced. This provides us with deeper information with regards to the
+increase in oil production as shown on the left.
 
 For plot 2.2, we present production of each of the top four produced
 vegetable oils as a world map, faceted in a 2x2 grid for easy
@@ -240,9 +269,7 @@ and non-producing regions. This is useful in showing distribution of
 production levels across geographical regions, which we hope to observe
 some trend from. The visualisation depicts production only in 2014,
 which is the most recent year in which all countries that have been
-producing in the previous five years, have non-missing values for. Using
-more recent data is more useful for inferring possible trends about the
-present time.
+producing in the previous five years, have non-missing values for.
 
 ## Visualizations
 
@@ -386,56 +413,71 @@ annotate_figure(plot_final, top = text_grob("Where are different top produced oi
 
 ## Discussions
 
-The increasing bubble sizes in plot 2.1 indicate that all types of oil
-have seen a rise in their raw production over the years. Palm oil has
-emerged as the largest contributor to the world’s total oil production,
-surpassing soybean. The preference for palm oil in the food industry may
-be due to its lower production cost, which could help manufacturers
-lower their overall production costs. In contrast, soybean production
-has largely been diverted towards non-edible purposes in recent years.
-It is worth noting that the top four oils - including soybean - can be
-used for both edible and non-edible purposes. The high versatility of
-these oils may be the reason for their high levels of production.
-Regional demand and production areas may also play a role in determining
-the popularity of different types of oils, hence it is worth exploring
-where each of these four oils are produced.
+Palm oil has emerged as the largest contributor to the world’s total oil
+production, surpassing soybean. The preference for palm oil in the food
+industry may be due to its lower cost (Liu, E. 2019, November 21) ,
+which could help manufacturers lower their overall production costs. In
+contrast, soybean production has largely been diverted towards
+non-edible purposes in recent years. It is worth noting that the top
+four oils can be used for both edible and non-edible purposes. The high
+versatility of these oils may be the reason for their high levels of
+production. Regional demand and production areas may also play a role in
+determining the popularity of different types of oils, hence it is worth
+exploring where each of these four oils are produced.
 
 Exploring the world maps for the production of palm oil in plot 2.2, we
 notice that despite palm oil being the highest produced vegetable oil,
 it is produced in few countries, particularly those nearer to the
-equator. This demonstrates a high yield per hectare of palm oil crop,
-making it an efficient therefore lucrative oil to produce. The food
-industry’s high demand for palm oil has further fueled its growth.
-
-Comparing palm oil production regions to the production regions of the
-other three top produced oils, we see that the other three crops have a
-relatively larger number of countries that produce it. This is
-especially apparent for soybean, which has a relatively even
-distribution across geographical regions (except for Africa). This could
-show that while palm oil grows best with specific climate requirements,
-the other crops are grow well in a wider range of climates, and this
-could be a reason for their global popularity.
+equator. Comparing palm oil production regions to the production regions
+of the other three top produced oils, we see that the other three crops
+have more countries that produce it. This is especially apparent for
+soybean, which has a relatively even distribution across geographical
+regions (except for Africa). This could show that while palm oil grows
+best with specific climate requirements, the other crops grow well in a
+wider range of climates, and this could be a reason for their global
+popularity. The fact that palm oil is able to occupy the highest share
+of oil in the world despite having few places that produce it emphasizes
+its utility and demand.
 
 Comparing the regions that produce palm oil and soybean oil, we observe
 that many countries that produce palm oil also produce soybean oil, but
-the converse is not true. This could mean that, given the region is to
-choose between soybean oil and palm oil to be used for more effective
-purposes. This could support the point that palm oil is preferred in the
-food industry which causes the proportion of soybean production to be
-skewed. Moreover, observing rapeseed oil and sunflower oil production,
-we can notice the areas of these productions are different. Rapeseed oil
-is seen to be majorly produced within Europe and Sunflower oil
-production is concentrated in the Russia and Ukraine areas. These
-regions have local cuisines that the respective oils play a major role
-in. This hints to us that local demand is a driving factor for the
-production of oil.
+the converse is not true. This could mean that regions that have the
+supply of palm oil also have soybean oil. Hence, this could mean that
+the regional demand would influence in the choice of oil usage, that is
+allocation of oil into non edible or edible sources is based on what is
+widely consumed within the region. Furthermore, using plot 2.2, we can
+see that rapeseed oil is seen to be majorly produced within Europe and
+sunflower oil production is concentrated in the Russia and Ukraine
+areas. Other than being one of the top producers, these regions are one
+of the top consumers of these oils. (Statista 2021 & NationMaster 2020)
+This could imply that the production of oil within an area is influenced
+by the local demand for them. Conclusively, local demand could be a
+possible driving factor for the production as well as usage of oil.
 
 # References:
 
-- <https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-06/readme.md>
-- Brazil: AES Tietê Afforestation/Reforestation Project in the State of
-  São Paulo. (n.d.). BioCarbon Fund. Retrieved April 11, 2023, from
+- R for Data Science Community. (2021, April 6). TidyTuesday Week
+  14, 2021. GitHub.
+  <https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-06/readme.md>
+
+- BioCarbon Fund. (n.d.). Brazil: AES Tietê Afforestation/Reforestation
+  Project in the State of São Paulo. Retrieved April 11, 2023, from
   <https://www.biocarbonfund.org/node/48>
+
 - Secom. (2018, June 30). Brazil 2010 Amazon Deforestation Data Shows
-  Lowest Rate Ever Recorded.  
+  Lowest Rate Ever Recorded. PR Newswire.
   <https://www.prnewswire.com/news-releases/brazil-2010-amazon-deforestation-data-shows-lowest-rate-ever-recorded-111118084.html>
+
+- NationMaster. (n.d.). Domestic Consumption of Sunflower Seed Oil.
+  Retrieved April 12, 2023, from
+  <https://www.nationmaster.com/nmx/ranking/domestic-consumption-of-sunflower-seed-oil>
+
+- Statista. (2021). Domestic consumption of rapeseed oil worldwide in
+  2020/21, by country (in 1,000 metric tons). Retrieved April 12, 2023,
+  from
+  <https://www.statista.com/statistics/1199472/domestic-consumption-of-rapeseed-oil-worldwide-by-country/>
+
+- Liu, E. (2019, November 21). Palm oil is the world’s most popular
+  vegetable oil. Here’s why it’s so cheap and how it’s destroying the
+  planet. Business Insider.
+  <https://www.businessinsider.com/why-palm-oil-is-so-cheap-2019-11#text=Palm%20oil%20is%20so%20efficient,the%20oil%20is%20so%20cheap>
